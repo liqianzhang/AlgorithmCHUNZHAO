@@ -138,5 +138,30 @@ sort 的时间复杂度 nlogn
 
 hashset判重
 
+实现循环双端链表：
+在头部插入节点，这个判断方法是之前想不到的  
+这边括号中加了个 capacity 是为了防止数组越界,
+如果front是0，再减1，就越界了
 
+front = (front - 1 + capacity) % capacity;
+而往尾部插入的时候是这样判断的，有什么区别呢
+rear = (rear + 1) % capacity;
 
+并且要注意处理的顺序是不都一样的一个先移动指针
+另一个后移动指针
+
+        front = (front - 1 + capacity) % capacity;
+        arr[front] = value;
+        
+        arr[rear] = value;
+        rear = (rear + 1) % capacity;
+
+为什么获取头结点和尾结点的方法不一样呢，或许是front指向
+第一个节点，而rear是指向最后一个节点的下一个节点吧
+
+return arr[front];       
+return arr[(rear - 1 + capacity) % capacity];
+
+在进行队首队尾判断的时候要注意不要把变量写错了
+要理解的基础上分析，这个并没有彻底掌握，通过
+五毒神掌进行巩固吧
