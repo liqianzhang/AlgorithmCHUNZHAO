@@ -8,7 +8,7 @@ public class DesignCircularDeque {
     private int rear;
 
     /** Initialize your data structure here. Set the size of the deque to be k. */
-    public MyCircularDeque(int k) {
+    public void MyCircularDeque(int k) {
         capacity = k + 1;
         arr = new int[capacity];
         front = 0;
