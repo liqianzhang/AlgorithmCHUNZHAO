@@ -167,3 +167,53 @@ return arr[(rear - 1 + capacity) % capacity];
 五毒神掌进行巩固吧
 
 模式识别：一旦需要根据特征进行归类，就应该利用散列表
+起初是不知道map.getOrDefaul 的用法。
+List<String> list = map.getOrDefault(key, new ArrayList<String>());
+
+--这么写是不正确的
+HashMap map = new HashMap<String,new ArrayList()>();
+
+String key = new String(chars);
+和
+String key = chars.toString();
+完全不一样，基础实在是太差了
+
+在字母异位词分组这个题上，还有很多细节性的问题，
+依然要通过五毒神掌来解决，这个问题也确实比前面的
+要难一点
+
+/** 这个是自己写的接雨水，很粗糙
+    public static int trap(int[] height) {
+        int rainNo = 0;
+        for (int i = 1; i < height.length-1; i++) {
+            for (int j = 0; i - j >=0 && i + j <= height.length-1; j++) {
+            if (height[i] < height[i-j] && height[i] < height[i+j]) {
+                int high = height[i-j] < height[i+j] ? height[i-j]:height[i+j];
+                rainNo += high - height[i];
+                }
+            }
+        }
+        return rainNo;
+    }
+    
+    这个方法是存在漏洞的，当数组为int[] rain = new int[]{4,2,0,3,2,5};
+    的时候，无法兼顾到最上面一层，这种暴力解法做不到
+    从当前元素向左扫描并更新 和从当前元素向右扫描并更新：
+    官方题解上给出的方法正是想要达到的目标方法，只是没有想到
+    用两个循环，把问题想复杂了，这样的话，这个暴力解法实际上是用到了
+    3个循环，如此时间复杂度是很大的
+    
+    for (int j = i; j >= 0; j--) { 
+    for (int j = i; j < size; j++) { 
+    这个手法是之前没有用到过的，今天学到了 ,平时是没有这么写过代码
+    的，别人的智慧果然是高深，之前的写代码方式简直是太low了，
+    通过今天的发现，从这个训练营当中获取更多好的方法，现在只是个
+    简单的开始
+    
+    嵌套循环中，对边界的判断还不尽如人意
+    j >= 0  j < size
+    
+    再一次执行的时候，自己写的那段代码也通过测试了，但是很显然
+    是不够健壮的，方法就用错了
+*/
+
