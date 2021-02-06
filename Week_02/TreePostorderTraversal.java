@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author 15000
+ * N叉树的后序遍历
 
  */
 public class TreePostorderTraversal {
